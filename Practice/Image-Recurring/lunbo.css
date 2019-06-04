@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: gray;
+}
+
+body{
+    font-family: "微软雅黑"；
+    color: #14191e;
+}
+
+ul{
+    list-style: none;
+}
+
+.main{
+    width: 500px;
+    height: 460px;
+    margin: 30px auto;
+    border: 10px solid maroon;
+    position: relative;
+    background-color: #aaa;
+    overflow: hidden;
+}
+
+.banner{
+    width: 9999px;
+    position: absolute;
+    left: 0;
+}
+
+.banner img{
+    display: block;
+    float: left;
+    height: 460px;
+    /*不设置宽度会怎样*/
+}
+.left-triangle,.right-triangle{
+    position: absolute;
+    top: 200px;
+    cursor: pointer;
+    display: none;
+}
+.main:hover .triangle{
+    display: block;
+}
+.left-triangle{
+    left: 0;
+}
+.right-triangle{
+    right: 0;
+}
+
+.dots{
+    width: inherit; /*继承父元素mian的宽度用于自适应*/
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    cursor: pointer;
+    height: 20px;
+    line-height： 20px;
+    background: transparent;
+}
+.dots .dot{
+    display: inline-block;/*span为行内元素，但我们需要设置宽高达成圆点效果*/
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    margin-right: 10px;
+}
+
+.dots .active{
+    background-color: orangered;
+}
