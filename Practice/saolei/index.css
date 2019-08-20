@@ -1,0 +1,25 @@
+/*
+top的作用条件position,如果是static则没有作用
+如果是。。。。。
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.banner{
+    position: absolute;
+    right: 10%;
+    top: 50px;
+}
+
+.appear p{
+    line-height: 50px;
+}
+
+.level{
+    display: inline-block;
+    border: 2px solid red;
+    text-align: center;
+}

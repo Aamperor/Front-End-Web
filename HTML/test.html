@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .switch{
+            width: auto;
+            display: flex;
+            align-items: center;
+
+        }
+        /*去掉原有的样式*/
+        #test{
+            display: none;
+        }  
+        /*添加默认样式*/
+        .checkbox{
+            background-color: #fff;
+            border: 1px solid #d7d7d7;
+            border-radius: 3px;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin: 0 5px;
+        }/*选中*/
+        /* .checkbox-input:checked+.checkbox{
+            background-color: #57ad68;
+        } */
+        .checkbox-input:checked+.checkbox::after{
+            content: "\2714";
+            display: inline-block;
+            height: 16px;
+            width: 16px;
+            color: #567;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+            border: 1px solid black;
+            background-color: #57ad68;
+            background-position:-40px -40px;
+            border-radius: 3px;
+            /* box-shadow: 0 0 4px #57ad68; */
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <form action="www.qq.com" target="_blank" method="post">
+        <div class="switch">
+            
+             <input type="checkbox" name="sex" value="city" id="test" class="checkbox-input">
+             <label for="test" class="checkbox"></label>
+            <span>以后以后</span>
+            <!-- <input type="checkbox" name="vehicle1" value="Bike">I have a bike -->
+        </div>
+        
+        
+    </form>
+</body>
+</html>

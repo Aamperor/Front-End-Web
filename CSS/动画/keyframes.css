@@ -1,0 +1,35 @@
+.container {
+    animation: name 1s linear;
+    animation-direction: reverse; /*反向，动画从100%到0%*/
+    animation-fill-mode: forwards;/*决定动画最后停在哪里，forwards/backforward*/
+    animation-iteration-count: infinite; /*动画循环次数*/
+    animation-play-state: paused; /*播放状态*/
+}
+@keyframes name{
+    0%{
+        /*也可以定义动画先往前走再往后走，也就是百分比大的宽度小*/
+        width: 100px;
+    }
+    100%{
+        width: 800px;
+    }
+}
+/* 实现动画的方式：transition，animation */
+/* 逐帧动画 ，关键帧的特殊用法*/
+.container {
+    background: url(./img.png) no-repeat;
+    animation: run 1s infinite;
+    animation-timing-function: steps(1); /*step的参数决定关键帧之间有几张画面*/
+}
+
+@keyframes run {
+    %0{
+        background-position: 0 0;
+    }
+    50%{
+        background-position: -100px 0;
+    }
+    100%{
+        background-position: 0 0; /*回到原点循环*/
+    }
+}

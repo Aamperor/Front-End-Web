@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扫雷游戏</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="banner">
+        <div class="appear">
+            <p>剩余雷数：<span></span>个</p>
+            <p>持续时间：<span></span>秒</p>
+        </div>
+        <div class="difficulty">
+            <p>难度选择</p>
+            <div class="level">
+                <form action="">
+                    <input type="radio" name="difficulty" value="primary" checked>初级（10+10）<br>
+                    <input type="radio" name="difficulty" value="middle">中级（15+15）<br>
+                    <input type="radio" name="difficulty" value="senior">高级(20+20)<br>
+                    <input type="button" name="begin" value="开始游戏">
+                </form>
+            </div>
+        </div>
+        <div class="tip">
+            <p>提示：</p>
+            <ol style="list-style-type:disc;">
+                <li>1.点击“开始游戏”游戏开始计时</li>
+                <li>2.游戏过程中点击“开始游戏”将开始新游戏</li>
+            </ol>  
+        </div>
+    </div>
+</body>
+</html>

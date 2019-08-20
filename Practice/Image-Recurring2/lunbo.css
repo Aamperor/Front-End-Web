@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    width: 1200px;
+    height: 460px;
+    overflow: hidden;
+    margin: 30px auto;
+    position: relative;
+}
+
+.banner{
+    width: 1200px;
+    height: 460px;
+    overflow: hidden;
+}
+.triangle{
+    background: url(./img/arrow.png) center center no-repeat;
+    top: 50%;
+    margin-top: -40px;
+    width: 40px;
+    height: 80px;
+    position: absolute;
+    cursor: pointer;
+}
+.arrow .left-arrow{
+    transform: rotate(180deg);
+}
+.arrow .right-arrow{
+    right: 0;
+}
+
+.dots{
+    border-radius: 50%;
+    bottom: 20px;
+    text-align: rignth;
+    right: 0;
+    position: absolute;
+    line-height: 12px;
+    padding-right: 24px;
+}
+
+.dots span{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    cursor: pointer;
+    background-color: white;
+    /* box-shadow: 0 0 0 2px rgba(255,255,255,0.8) inset; */
+}
+
+.dots span.active{
+    /* box-shadow: 0 0 0 2px rgba(7,17,27,0.4) inset; */
+    background-color: blue;

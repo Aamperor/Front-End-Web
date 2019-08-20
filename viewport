@@ -1,0 +1,59 @@
+1.<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+2.移动设备的浏览器默认viewport一般设置为980px或者1024px
+3.windows对象的devicePixelRatio属性，定义为设备物理像素和独立像素的比例。CSS中的px可以看作设备的独立像素，
+也就是说CSS中的1px并不等于设备的1px,比如缩放就会改变CSS中的1px所代表的物理像素
+4.移动设备的三个viewport：1)layout viewport浏览器默认的视口，可以通过document.documentElement.clientWidth来获取
+						  2)visual vieport浏览器可视区域的大小，通过window.innerWidth来获取
+						  3)ideal viewport移动设备的理想视口，即CSS中的宽度，不需要用户缩放和横向滚动条就能正常查
+						  看网站的所有内容
+						  
+						  
+						  
+						  
+						  
+						  
+面试题
+.Doctype的意义
+	1）让浏览器以标准模式渲染
+	2）让浏览器知道元素的合法性
+	
+2.HTML XHTML HTML5的关系
+	1）HTML属于SGML
+	2)XHTML属于XML，是HTML进行XML严格化的结果
+	3）HTML5不属于SGML或者XML,比XHTML宽松
+	
+3.HTML5有什么变化
+	1）新的语义化元素，比如section,article，aside,
+	2）表单增强,新的元素，表单验证
+	3）新的API，离线（application cache）、音视频、图形、实时通信(websocket)、本地存储、设备能力
+	4）分类和嵌套变更，a元素
+4.em和i有什么区别
+	1）em是语义化的标签，表示强调
+	2）i是纯样式的标签，表示斜体
+	3）HTML5中不推荐使用i,一般用作图标
+5.语义化的意义
+	1）开发者容易理解
+	2）机器容易理解结构（搜索、读屏软件）
+	3）有助于SEO
+	4）semantic microdata
+6.哪些元素可以自闭合？
+	1）表单元素input
+	2)图片img
+	3)br hr
+	4)meta link 
+7.HTML和DOM的关系
+	HTML是“死的”，DOOM由HTML解析而来，是“活的”，JS可以维护DOM
+8.property和atrribute的区别
+	1）DOM对象初始化时会创建默认的基本property
+	2)只有在HTML标签中定义的attribute才会被保存在property的attribute属性中
+	3）attribute的数据会同步到property上，然而property的更改不会改变attribute
+
+9.form的作用
+	1）直接提交表单
+	2）submit/reset
+	3）便于浏览器保存表单
+	4）第三方库可以整体提取值
+	5）第三方库可以进行表单验证
+
+
+	
