@@ -1,0 +1,28 @@
+// 安装 npm install less (-g/-D/-S)
+//调用（安装在项目下）./node_modules/.bin/lessc 其它参数
+@fontSize: 12px; //值要带单位，运算时也带单位
+@bgColor: red;
+
+.block(@fontSize) { //有（）参数所以不会被编译出来，没有参数就会被编译出来
+    font-size: @fontSize;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.wrapper {
+    // .wrapper .nav
+    .nav {
+        font-size: @fontSize;
+    }
+    .content {
+        font-size: @fontSize + 2px;//要带单位，因为变量原本有单位
+        // &表示平级的关系，.content:hover
+        &:hover {
+            background:@bgColor;
+        }
+    }
+    .citing {
+        .block(@fontSize + 2px); //代码复用
+    }
+}
+// 编译输出： ./node_modules/.bin/lessc less-nesting.less>less-nesting.css

@@ -1,0 +1,28 @@
+// 安装 npm install node-sass -g
+// 编译输出./node_modules/.bin/node-sass sass-nesting.scss>sass-nesting.css
+// 指定输出格式 --output-style expanded/others
+$fontSize: 12px; //值要带单位，运算时也带单位
+$bgColor: red;
+
+@mixin name($fontSize) { //name前没有.
+    animation-name: run;
+    font-size: $fontSize;
+}
+.error {
+    border: 1px;
+}
+.wrapper {
+    // .wrapper .nav
+    .nav {
+        font-size: $fontSize;
+        @extend .error;//产生更小代码
+    }
+    .content {
+        font-size: $fontSize + 2px;//要带单位，因为变量原本有单位
+        // &表示平级的关系，.content:hover
+        &:hover {
+            background:$bgColor;
+            @include name($fontSize);
+        }
+    }
+}
