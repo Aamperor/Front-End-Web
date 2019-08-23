@@ -1,0 +1,51 @@
+/* 
+install: npm install postcss-cli (-g)
+use: ./node_modules/.bin/postcss catalog1/usage.css -o catalog2/usage2.css
+postcss.config.js:
+const atImport = require('postcss-import');
+const cssnano = require('cssnano');
+const cssnext = require('postcss-cssnext');
+module.exports = {
+    plugins: [
+        atImport, //可以把所有import语句内联进来
+        autoprefixer({
+            //npm install autoprefixer
+            broswers: ['last 2 versions']  //所有浏览器最近两个版本
+                      //‘>0%’  //使用份额大于（全部）的浏览器，会出现前缀
+        }),
+        cssnano //压缩代码，放在最后
+    ]
+}
+*/
+
+/* 
+precss使用
+const precss = require('precss');
+modules.exports = {
+    plugins: [
+        precss;
+    ]
+};
+*/
+example.css
+$blue: #ccc;
+$column: 200px;
+
+.container {
+    background-color: $blue;
+}
+
+for $i from 1 to 3 {
+    .b-$i {
+        width: $(i)px;
+    }
+}
+
+.c {
+    @if 3 < 5 {
+        background-color: green;
+    }
+    @else {
+        background-color: blue;
+    }
+}
