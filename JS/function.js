@@ -84,3 +84,4 @@ function inner(){
     alert(inner.caller); //显示outer()函数的源码
     // alert(arguments.callee.caller);也可以通过arguments.callee.caller访问
 }
+/**在严格模式下 */
