@@ -84,4 +84,52 @@ function inner(){
     alert(inner.caller); //显示outer()函数的源码
     // alert(arguments.callee.caller);也可以通过arguments.callee.caller访问
 }
-/**在严格模式下 */
+/**在严格模式下,访问arguments.callee和arguments.caller会出错，而在非严格模式下，arguments.caller
+ * 始终是undefined,定义arguments.callee是为了分清arguments.caller和函数的caller属性
+ * 此外，严格模式下不能为函数的caller属性赋值，否则会导致错误
+ */
+
+ /**函数的属性和方法
+  * length:函数希望接收的命名参数的个数
+  * prototype：保存引用类型实例方法的真正所在，toString()和valueOf()都保存在它之下，
+  * 不过是通过各自对象的实例访问；在ECMAScript5中prototype是不可枚举的，使用for-in无法发现
+  * apply():接收两个参数，一个是运行函数的作用域，一个是参数数组，第二个参数可以是array实例，
+  * 也可以是arguments对象
+  * call():第一个参数是this,接着是传递给函数的所有参数，必须逐个列出来
+  * apply()和call()真正的用武之地在于扩充函数赖以运行的作用域
+  */
+ function sum(n1,n2){
+     return  n1 + n2;
+ }
+ function callSum1(n1,n2){
+     return sum.apply(this,arguments);  //传入arguments对象，因为在全局作用域中调用，this就是window
+ }
+ function callSum2(n1,n2){
+     return sum.apply(this,[n1,n2]);  //传入参数数组
+ }
+ alert(callSum1(1,1));  //2
+ alert(callSum2(1,1)); //2
+
+ function callSum3(n1,n2){
+     sum.call(this,n1,n2);
+ }
+
+
+ var o = {color: "blue"};
+ function color(){
+     alert(this.color);
+ };
+ color.call(o); //blue,函数的this指向o，不需要像前面把color()放到o中再通过o.color()来调用
+
+
+ /**bind():创建函数实例，this会被绑定到传给bind()函数的值 
+ */
+var color2 = color.bind(o);
+color2();  //blue,因为this值等于o
+
+/**
+ * toLocalString():
+ * toString():
+ * 两个方法都返回函数代码，但是返回的格式取决于浏览器
+ * valueOf():返回函数代码
+ */
