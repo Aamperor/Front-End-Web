@@ -34,7 +34,7 @@ var resu        = falseValue && true;   //false
 
 /**Number类型
  * toString():可以传递一个表示基数的进制参数，告诉函数返回几进制的字符串形式
- * toLocalString():
+ * toLocaleString():
  * 两个方法返回字符串形式的数值
  * valueOf():返回对象表示的基本类型的数值
  * toFixed():传递一个参数，表示返回的小数位数，如果数值本身包含的位数小于指定位数用0补足，
@@ -61,7 +61,7 @@ alert(numb instanceof Number); //true
 
 /**String 类型
  * toString()
- * toLocalString()
+ * toLocaleString()
  * valueOf()都返回对象所表示的基本字符串值
  * length:字符串中包含多少字符(即使字符串包含双字节字符也算是一个字符)
  * charAt():接受一个参数指定要返回的字符在字符串中的位置，结果返回给定位置的字符
@@ -71,9 +71,88 @@ alert(numb instanceof Number); //true
  * slice():
  * substr():
  * substring():
+ * 都返回被操作字符串的一个子字符串，都接受一或两个参数，第一个指定子字符串起始位置，第二个参数表示
+ * 字字符串结束位置。slice()和substring第二个参数指定的是子字符串最后一个字符后面的位置，而substr()
+ * 得第二个参数指定返回的字符个数。如果没有指定第二个参数，则将字符串的末尾作为结束
+ * 
+ * 如果传入的参数是负数，slice()会将负数与字符串的长度相加
+ *                     substring()会将所有负值转换为0
+ *                     substr()会将第一个负参数与字符串长度相加，第二个负参数转换为0
  */
 var stringValue = "hello world";
 alert(stringValue.length); //"11"
 alert(stringValue.charAt(1)); //"e"
 alert(stringValue.charCodeAt(1)); //"101"    101是e的字符编码
 alert(stringValue[1]); //"e"
+
+
+/**字符串位置方法 
+ * indexof():
+ * lastIndexOf():
+ * 都接收两个参数，要查找的字符串和开始查找的位置，
+ * 都返回给定子字符串在字符串中的位置，一个往后找，一个往前找
+ * 可以通过循环调用来找到全部符合条件的子字符串
+*/
+alert(stringValue.indexOf("o",6));  //7 从位置6（字母w）开始找，找到world中的o位置是7
+alert(stringValue.lastIndexOf("o",6));  //4,从位置6(w)向前搜索找到hello的o
+/**trim():创建字符串的副本，删除前置和后缀的空格，然后返回结果
+ * trimLeft():Firefox3.5+,Safari5+,Chrome8+支持
+ * trimRight():Firefox3.5+,Safari5+,Chrome8+支持
+ */
+var varr = "   hello world     ";
+alert(varr.trim()); //"hello world"
+
+/**字符串大小写转换
+ * toLowerCase():
+ * toLocaleLowerCase():
+ * toUpperCase()：
+ * toLocaleUpperCase():少数语言会为Unicode大小写转换应用特殊的规则
+ */
+
+ /**字符串模式匹配方法
+  * match():接受一个参数，正则表达式或者RegExp对象，结果返回一个数组
+  * 字符串上调用match()本质上和RegExp调用exec()相同。返回的数组的第一项
+  * 是与整个模式匹配的字符串，之后的每一项保存着与正则表达式中的捕获组匹配的字符
+  * search():接收一个参数，由字符串或者RegExp对象指定的一个正则表达式；之后从开头向后查找，
+  * 返回字符串中第一个匹配项的索引，没有则返回-1
+  * replace():接收两个参数，一个是RegExp对象或者字符串（不是正则表达式），
+  * 另一个是一个字符串或者一个函数。如果第一个参数是字符串那么只会替换第一个子字符串，要
+  * 想替换所有的子字符串，唯一的办法是提供一个正则表达式且指定全局标志g
+  * 如果第二个参数是字符串，还可以使用特殊字符序列将正则表达式操作得到的值插入到结果字符中
+  *    字符序列   替换文本
+  *     $$          $
+  *     $&          同RegExp.lastMatch
+  *     $'          同RegExp.leftContext
+  *     $`          同RegExp.rightContext
+  *     $n          n为0-9，匹配第n个捕获组的子字符串，如$1匹配第一个捕获组的子字符串，如果RegExp中
+  *                     没有定义捕获组就是用空字符串
+  *     $nn         第01-99个捕获的子字符串，没有定义就用空字符串
+  * 如果第二个参数是函数，在只有一个匹配项的情况下会向函数传递三个参数：模式的匹配项，
+  * 模式匹配项在字符串中的位置，原始字符串
+  * 
+  * split():基于指定的分隔符将一个字符串分割成多个字符串，并将结果放在一个数组中；
+  * 分隔符可以是字符串，也可以是RegExp对象（此方法中不会将字符串看成正则表达式），第二个参数可选，用于
+  * 指定返回数组的大小
+  */
+ var text = "cat,bat,sat,fat";
+ var pose = text.search(/at/);  //1
+ 
+ var resul = text.replace("at","ond"); //"cond,bat,sat,fat"
+ var result = text.replace(/at/g,"ond"); //"cond,bond,sond,fond"
+ var Re = text.replace(/(.at)/g,"word($1)");  //word(cat),word(bat),word(sat),word(fat)
+
+ function htmlEscape(text){
+     return text.replace(/[<>"&"]/g,function(match,pos,originalText){
+         switch(match){
+             case "<": return "&lt ";
+             case ">": return "&gt ";
+             case "&": return "&amp ";
+             case "\"": return "&quot "; 
+         }
+     });
+ }
+ var out = htmlEscape("<p class=\"greeting\">hello</p>");//&lt p class=&quot greeting&quot &gt hello&lt /p&gt 
+
+var colorText = "red,blue,green,yellow";
+var c2 = colorText.split(",",2);
+var c3 = colorText(/[^\,]+/);
