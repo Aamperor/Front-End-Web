@@ -156,3 +156,11 @@ alert(varr.trim()); //"hello world"
 var colorText = "red,blue,green,yellow";
 var c2 = colorText.split(",",2);
 var c3 = colorText(/[^\,]+/);
+
+/**localeCompare():比较两个字符串，并返回下列值中的一个：
+ *  比较字符串和参数在字母表中的位置，字符串位置靠前返回负数，靠后返回正数，两者位置一样返回0
+ * 实现所支持的地区（国家和语言）决定了这个方法的行为，比如是否区分大小写
+ * fromCharCode():与charCodeAt()执行相反的操作，接收一或多字符的编码，然后将他们转换成一个字符串
+ */
+var stringValue = "yellow";
+alert(stringValue.localeCompare("brick"));  //1
