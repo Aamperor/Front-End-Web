@@ -18,10 +18,10 @@ var values = [1,2,]; //！这样会创建一个包含2或3个元素的数组
 var options = [,,,,,]; //！这样会创建一个包含5或6个元素的数组
 
 /**
- * 转换方法，所有对象都有toLocalString(),toString(),valueOf()方法
+ * 转换方法，所有对象都有toLocaleString(),toString(),valueOf()方法
  * toString():返回由数组中每个值的字符串形式拼接形成的以逗号分隔的字符串
  * valueOf():获得对象原始值，还是返回数组
- * toLocalString():调用每个数组元素的tolocalString()方法，使用
+ * toLocaleString():调用每个数组元素的toLocaleString()方法，使用
  * 地区特定的分隔符把生成的字符串连接起来，它会根据机器的本地环境来返回字符串，
  * 比如符合你本地格式的日期，数字等
  * join():接收一个参数来作为分隔符，来连接数组各项来构建字符串

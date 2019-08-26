@@ -22,16 +22,16 @@ var stop1  = +new Date();
 var result1 = stop1 - start1;
 
 /**继承的方法
- * toLocalString():以浏览器设置的地区相应的格式返回日期时间
+ * toLocaleString():以浏览器设置的地区相应的格式返回日期时间
  * toString():返回带有时区信息的日期时间
  * valueOf():直接俄返回毫秒数（可以用于比较）
  */
 
  /**日期格式化方法
   * toDateString():显示星期、月、日、年
-  * toLocalDateString():
+  * toLocaleDateString():
   * toTimeString():显示时、分、秒和时区
-  * toLocalTimeString():
+  * toLocaleTimeString():
   * toUTCString
   */
  /**日期时间组件方法

@@ -46,14 +46,14 @@ alert(match[2]);  //and baby
 /**其它方法
  * test():接收一个字符串参数，模式与参数匹配返回true,否则false,用于验证用户输入
  * toString():返回正则表达式的字面量，与创建表达式的方式无关
- * toLocalString():同上
+ * toLocaleString():同上
  */
 alert(ex1.toString());  //  /\[bc\]at/i
 
 /**RegExp构造函数属性
  * 属性名包括常属性名和短属性名，有些短属性名Opera和IE不支持
  * input($_):最近一次要匹配的字符，Opera不支持
- * lastMaetch($&):最近一次的匹配项，Opera不支持
+ * lastMatch($&):最近一次的匹配项，Opera不支持
  * lastParen($+):最近一次匹配的捕获组，Opera不支持
  * leftContext($`):input字符串中lastMatch之前的文本
  * multiline($*):布尔值，表示是否所有表达式都使用多行模式，IE和Opera不支持
