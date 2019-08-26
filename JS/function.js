@@ -128,7 +128,7 @@ var color2 = color.bind(o);
 color2();  //blue,因为this值等于o
 
 /**
- * toLocalString():
+ * toLocaleString():
  * toString():
  * 两个方法都返回函数代码，但是返回的格式取决于浏览器
  * valueOf():返回函数代码
