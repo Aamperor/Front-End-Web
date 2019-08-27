@@ -70,6 +70,8 @@ alert(book.edition); //2,这是访问器属性的常见方式，通过设置一�
  });
 
  /**读取属性的特性
-  * Object.getOwnPrpertyDescriptior():接收两个参数，属性所在的对象，要读取描述符的属性名称；
+  * Object.getOwnPropertyDescriptor():接收两个参数，属性所在的对象，要读取描述符的属性名称；
   * 返回一个对象，如果是访问器属性就包含c、e、g、s，如果是数据属性就包括c e w v
+  * 
+  * 要的到原型属性的描述符，必须直接在原型对象上调用Object.getOwnPropertyDescriptor()
   */
