@@ -153,7 +153,7 @@ function Perso(name,age,job){
     this.job = job;
 }
 Person.prototype = {
-    constructor: Perso;
+    constructor: Perso,
     sayName: function(){
         alert(this.name);
     }

@@ -74,3 +74,67 @@ alert(instance.getSuperValue());   //但是此时instance.constructor指向的�
 
  var example2 = new Second();
  alert(example2.colors);  //"red,blue,green"
+
+ /**原型式继承
+  * ES5通过Object.create()方法规范化原型式继承，该方法接收两个参数，一个用作新对象原型的对象
+  * 和（可选的）一个为新对象定义额外属性的对象，在传入一个参数的情况下，Object.create()和
+  * object()方法的行为相同
+  * Object.create()的第二个参数于Object.defineProperties方法的第二个参数格式相同：每个属性都通过
+  * 自己的描述符定义的，以这种该方式指定的任何属性都会覆盖原型对象上的同名属性
+  * 
+  */
+ var people = {
+     name: "Nicho",
+     friends: ["sh","vd"]
+ };
+ var anotherpe = Object.create(people,{
+     name: {
+         value:"gre"
+     }
+ });
+ alert(anotherpe.name); //"gre"  一定要记得包含引用类型值得属性始终会共享相应的值
+
+
+ /**寄生式继承：创建一个仅用于封装继承过程得函数，该函数在内部以某种方式来增强对象，最后再像真是它做了
+  * 所有工作一样返回对象
+  */
+ function createAnother(original){
+     var clone = object(original); //调用函数创建新对象
+     clone.sayHi = function(){  //以某种方式增强该对象
+         alert("hi");
+     };
+     return clone;   //返回对象
+ }
+
+ /**组合式继承：最大问题是无论什么情况下都会调用两次超类型构造函数，一次是在创建子类型原型得时候，
+  * 另一次是在子类型构造函数内部。子类型最终会包含超类型对象得全部属性，但我们不得不在调用子类型构造
+  * 函数时重写这些属性
+  * 
+  */
+ function SuperType(name){
+     this.name = name;
+     this.colors = ["red","blue","green"];
+ }
+ SuperType.prototype.sayName = function(){
+     alert(this.name);
+ };
+ function SubType(name,age){
+    SubType.call(this,name);
+    this.age = age;
+ }
+ SubType.prototype = new SubType();
+ SubType.prototype.constructor = SubType;
+ SubType.prototype.sayAge = function(){
+     alert(this.age);
+ };
+
+ /**寄生组合式继承：通过借用构造函数来继承属性，通过原型链得混成形式来继承方法
+  * 下面的例子，第一步创建超类型原型的一个副本，第二步为创建的副本添加constructor属性，
+  * 从而弥补因重写原型而失去的默认的constructor属性，最后一步将新创建的对象（也就是副本）赋值给子类型的
+  * 原型
+  */
+ function inheritPrototype(subType,superType){
+     var prototype = object(superType.prototype);  //创建对象
+     prototype.constructor = subType;   //增强对象
+     subType.prototype = prototype;  //指定对象
+ }
