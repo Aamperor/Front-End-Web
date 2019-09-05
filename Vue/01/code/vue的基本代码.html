@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 将来new的Vue实例会控制该元素中的所有内容
+        实例所控制的元素区域就是MVVM中的V
+     -->
+    <div id="app">
+        <!-- v-cloak解决插件表达式闪烁的问题 -->
+        <p v-cloak>{{msg}}</p>
+        <h4 v-text="msg"></h4>
+        <h3 v-html="msg"></h3>
+        <!-- v-bind是Vue中用于绑定属性的指令,可以简写为冒号，同时它也会将属性值认为是一个JS变量，因此
+            可以将属性值写为一个合法表达式
+            v-on事件绑定
+         -->
+        <input type="button" value="你个智障":title="mytitle + ' is you'" @mouseover="show">
+        <!-- v-text与插值表达式
+            1.v-text默认没有闪烁问题
+            2.v-text会覆盖元素中的原本内容，插值表达式只会替换自己的占位符不会清空元素的内容
+            3.v-text和插值表达式都会将内容解析为文本，包括标签，v-html可以将内容中的标签正确解析
+         -->
+    </div>
+        <!-- 导入Vue的包 -->
+        <script src="./lib/vue-2.4.0.js"></script>
+    <script>
+        //创建Vue的实例
+        // 导入包之后浏览器内存中就多了一个Vue构造函数
+        //new出来的对象就是MVVM中的VM
+        var vm = new Vue({
+            el: '#app', //当前new的这个Vue实例控制页面上的哪个区域
+            //data就是MVVM中的M
+            data: {
+                // data属性中存放的是el中要用到的数据
+                msg: '<h1>Welcome to Vue</h1>', //通过Vue指令避免手动操作DOM元素
+                mytitle: "stupid"
+            },
+            methods:{
+                // methods定义当前vue实例中所有可用方法
+                show: function(){
+                    alert("get out");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
