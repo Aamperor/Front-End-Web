@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Caculator</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="n1">
+        <select name="" id="" v-mode="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" v-model="n2"> 
+        <input type="button" value="=" @click="cacul">
+        <input type="text" v-model="result"> 
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                n1: 0,
+                opt: "+",
+                n2: 0,
+                result: 0
+            },
+            methods: {
+                cacul(){
+                    // switch(this.opt){
+                    //     case '+' : this.result = parseFloat(this.n1) + parseFloat(this.n2);break;
+                    //     case '-' : this.result = parseFloat(this.n1) - parseFloat(this.n2);break;
+                    //     case '*' : this.result = parseFloat(this.n1) * parseFloat(this.n2);break;
+                    //     case '/' : this.result = parseFloat(this.n1) / parseFloat(this.n2);break;
+                    // }
+                    this.result = eval('parseFloat(this.n1)' + this.opt + 'parseFloat(this.n2)');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

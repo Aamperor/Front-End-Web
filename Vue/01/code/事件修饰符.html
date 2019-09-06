@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>跑马灯效果</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+    <style>
+        .inner {
+            height: 150px;
+            background-color: #ccc;
+        }
+        .circle {
+            line-height: 100px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- self只有点击当前元素才会触发事件，而不是像冒泡事件那样被动触发 ，它只会阻止自身的冒泡行为，
+    而不能阻止真正的冒泡行为，比如它从他的子元素到父元素的冒泡-->
+    <div id="app" @click.self="outer">
+        <!-- capture捕获事件（从外到里），用在外层元素 -->
+        <div class="inner" @click.capture="divHandler">
+            <!-- stop阻止冒泡事件（从里到外），用在内部元素 -->
+            <input type="button" value="click" @click.stop="btnHandler">
+            <!-- prevent阻止默认行为，比如链接的跳转 -->
+            <a href="" htef="https://mail.google.com" target="_blank" @click.prevent="divHandler">gogogoog</a>
+            <input type="button" value="click" @click="btnHandler">
+            <!-- once事件只触发一次 -->
+            <div class="circle" @mouseover.once="circle">
+                <span>{{msg}}</span>
+                <!-- v-bind只能实现数据单向绑定，从M到V -->
+                <input type="text" :value="msg">
+                <!-- v-model实现数据的双向绑定，但是只能用于表单元素，input等,textarea,select,checkbox -->
+                <input type="textarea" v-model="msg">
+            </div>
+        </div>
+    </div>
+    <script>
+        // 
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '修改之前'
+            },
+            methods: {
+                divHandler(){
+                    console.log("外层");
+                },
+                btnHandler(){
+                    console.log("内层");
+                },
+                outer(){
+                    console.log("最外层");
+                },
+                circle(){
+                    console.log("我也不知道");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
