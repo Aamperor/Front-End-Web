@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-for循环数组,值在前索引在后 -->
+        <p v-for="(item,i) in list">索引值：{{i}} 每一项值：{{item}}</p>
+        <p v-for="user in complex">用户名：{{user.name}}</p>
+        <!-- 遍历对象时，值在前键在中间索引在后 -->
+        <p v-for="(val,key,index) in user">前面的是value:{{val}},后面的是键key:{{key}},接着是索引：{{index}}</p>
+        <!-- v-for迭代数字从1开始，循环数组或者对象时索引从0开始 -->
+        <p v-for="count in 10">第{{count}}次</p>
+        <!-- key属性的使用,
+            v-for循环时key属性只能使用number或者String类型；
+            必须使用v-bind:属性绑定的形式 
+            在组件或者一些特殊情况中如果使用v-for有问题必须在使用的同时指定唯一的key-->
+        <p v-for="item in complex" :key="item.id">
+            <input type="checkbox">{{item.id}} {{item.name}}
+        </p>
+        <!-- v-if每次会重新创建或者删除元素，消耗较高 -->
+        <span v-if="flag">我也不知道自己怎么了</span>
+        <!-- v-show不会删除或者创建元素，只会切换元素的display:none，初始渲染消耗高 -->
+        <span v-show="flag">怎么了？在想什么呢？</span>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [1,2,3,4],
+                complex: [
+                    {id:1,name:'first'},
+                    {id:2,name:'second'}
+                ],
+                user: {
+                    id: 'ame',
+                    name: 'not konw',
+                    gender: 'male'
+                },
+                flag: false
+
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+</html>

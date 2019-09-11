@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../01/code/lib/vue-2.4.0.js"></script>
+    <style>
+        .thin {
+            color: red;
+        }
+        .active {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 在数组中使用三元表达式 -->
+        <h1 :class="['thin',flag?'active':'']">ksbklbfoinltlabefb</h1>
+        <!-- 使用对象代替三元表达式 -->
+        <h2 :class="['thin',{active:flag}]">adnbtrenrm4nqe</h2>
+
+        <h2 :class="classObject">adnbtrenrm4nqe</h2>
+
+
+        <!-- 在内联样式中使用,style替换class -->
+        
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                flag: true,
+                classObject: {thin:true,active:true}
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+</html>
