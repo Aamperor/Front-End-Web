@@ -1,4 +1,6 @@
-<!-- 1. 事件修饰符的前缀写错，将.写成:-->
+<!-- 1. 事件修饰符的前缀写错，将.写成:
+    2.内层函数中定义的变量直接在外层函数中应用报错变量未声明
+-->
 
 
 
@@ -30,7 +32,10 @@
                     </label>
                     <!-- vue中使用事件绑定机制，不传参时可以省略括号 -->
                     <input type="button" value="添加" class="btn btn-primary" @click="add">
-                      
+                    
+                    <label for="">搜索关键字:
+                        <input type="text" class="form-control" v-model="keyword">
+                    </label>
               </div>
         </div>
         
@@ -43,27 +48,64 @@
                     <th>Operation</th>
                 </tr>
                 <tbody>
-                    <tr v-for="item in list" :key="item.id">
+                    <tr v-for="item in _search(keyword)" :key="item.id">
                         <td>{{item.id}}</td>
                         <td v-text="item.name"></td>
-                        <td>{{item.ctime}}</td>
+                        <td>{{item.ctime | timeFormat()}}</td>
                         <td><a href="" @click.prevent="del_another(item.id)">删除</a></td>
                     </tr>
                     
                 </tbody>
             </thead>
         </table>
+        <!-- 过滤器也可以传递多个参数，也可以在一个元素中使用多个过滤器，
+        这种情况下，上一个过滤器处理以后交给下一个过滤器处理，直到所有过滤器
+        处理完毕 -->
+        <!-- 过滤器调用采用就近原则 -->
+        <p>{{msg | msgFormat('后来')}}</p>
     </div>
     <script>
+        // 定义过滤器
+        Vue.filter('msgFormat',function(msg,replacement){
+            // 第一个参数为字符串的话只能替换第一个出现的
+            // return msg.replace('以前','后来');
+            // 使用正则表达式进行全局匹配
+            return msg.replace(/以前/g,'replacement');
+        });
+
+        // 时间格式化过滤器
+        // 形参不传入的话永远是undefined
+        Vue.filter('timeFormat',function(time,pattern){
+            var _time = new Date(time);
+            var y = time.getFullYear();
+            // ES6中方法String.prototype.padStart(num,data),开头填充
+            // String.prototype.padEnd(num,data)结尾填充，num为填充后的位数，data为填充的内容
+            var m = (time.getMonth() + 1).toString().padStart(2,'0');
+            var d = (time.getDate()).toString().padStart(2,'0');
+            if(pattern && pattern.toLowerCase() === 'yyyy-mm-dd'){
+                // 模板字符串
+            return `${y}/${m}/${d}`;
+            }
+            else{
+                var hour = time.getHours().toString().padStart(2,'0');
+                var min = time.getMinutes().toString().padStart(2,'0');
+                var sec = time.getSeconds().toString().padStart(2,'0');
+                return `${y}/${m}/${d} ${hour}:${min}:${sec}`;
+            }
+            
+        });
+
         var vm = new Vue({
             el: '#app',
             data: {
                 id: '',
                 name: '',
+                keyword: '',
                 list: [
                     {id: 1,name: 'Benz',ctime: new Date()},
                     {id: 2,name: 'baoma',ctime: new Date()}
-                ]
+                ],
+                msg:'你那么喜欢回忆以前，是因为后来过的没有以前快乐吧'
             },
             methods: {
                 add(){
@@ -86,8 +128,46 @@
                             return true;
                         }
                     });
-                    console.log(index);
                     this.list.splice(index,1);
+                },
+                search(keyword){
+                    var newList = new Array();
+                    this.list.forEach(item => {
+                        if(item.name.indexOf(keyword) != -1){
+                            newList.push(item);
+                        }
+                    })
+                    return newList;
+                },
+                _search(keyword){
+                    var newList = this.list.filter(item => {
+                        // ES6中提供的方法String.prorotype.includes(),返回True或者False
+                        // JQuery中有contains
+                        if(item.name.includes(keyword)){
+                            return item;
+                        }
+                    })
+                    return newList;
+                }
+            },
+            // 局部过滤器
+            filters: {
+                timeFormatl: function(time,pattern){
+                    var _time = new Date(time);
+                    var y = time.getFullYear();
+                    var m = time.getMonth() + 1;
+                    var d = time.getDate();
+                    if(pattern && pattern.toLowerCase() === 'yyyy-mm-dd'){
+                        // 模板字符串
+                    return `${y}/${m}/${d}`;
+                    }
+                    else{
+                        var hour = time.getHours();
+                        var min = time.getMinutes();
+                        var sec = time.getSeconds();
+                        return `${y}/${m}/${d} ${hour}:${min}:${sec}`;
+                    }
+                    
                 }
             }
         });
